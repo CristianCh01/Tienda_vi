@@ -37,7 +37,7 @@ public class CategoriaController {
     public String modificar(Categoria categoria, Model model) {
         categoria= categoriaService.getCategoria(categoria);
         model.addAttribute("categoria", categoria);
-        return "/categoria/modifica/";
+        return "/categoria/modifica";
     }
     
     @PostMapping("/guardar")
