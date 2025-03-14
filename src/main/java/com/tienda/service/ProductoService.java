@@ -39,4 +39,19 @@ public class ProductoService {
         //Si el idProducto no tiene un valor.... se inserta un registro con la informacion de la producto
         productoRepository.save(producto);
     }
+    
+    @Transactional(readOnly = true)
+    public List<Producto> consultaAmpliada(double precioInf,double precioSup) {
+         return productoRepository.findByPrecioBetweenOrderByPrecio(precioInf, precioSup);
+    }
+    
+    @Transactional(readOnly = true)
+    public List<Producto> consultaJPQL(double precioInf,double precioSup) {
+         return productoRepository.consultaJPQL(precioInf, precioSup);
+    }
+    
+    @Transactional(readOnly = true)
+    public List<Producto> consultaSQL(double precioInf,double precioSup) {
+         return productoRepository.consultaSQL(precioInf, precioSup);
+    }
 }
