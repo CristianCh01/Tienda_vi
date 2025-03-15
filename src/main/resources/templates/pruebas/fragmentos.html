@@ -180,6 +180,37 @@
                                 </div>
                             </form>
                         </div>
+                        
+                        <!-- Consultas JPQL por nombre-->
+                        <div class='col-md-4 mb-3 mt-2'>
+                            <form method="post"
+                                  th:action='@{/pruebas/query4}'
+                                  class='was-validated'>
+                                <div class='card'>
+                                    <div class='card-header bg-info text-white text-center'>
+                                        <h5 class='card-title'>[[#{pruebas.jpql}]]</h5>
+                                    </div>
+                                    <div class='card-body'>
+                                        <div class='mb-3'>
+                                            <label>[[#{pruebas.nombre}]]</label>
+                                            <input type='text'
+                                                   class='form-control'
+                                                   th:value='${nombre}'
+                                                   name='nombre'
+                                                   required="true"
+                                                   maxlength="100"/>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class='card-footer text-center'>
+                                        <button type='submit' class='btn btn-info'>
+                                            <i class='fas fa-search'></i> [[#{pruebas.jpql}]]
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
                     </div>
                 </div>
                 <div class='col-md-1'></div>

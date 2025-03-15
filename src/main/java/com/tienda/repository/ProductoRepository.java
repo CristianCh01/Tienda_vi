@@ -13,7 +13,6 @@ public interface ProductoRepository
             double precioInf,
             double precioSup);
             
-    
     //Consulta JPQL  
     @Query(value="SELECT a "
             + "FROM Producto a "
@@ -23,9 +22,7 @@ public interface ProductoRepository
     public List<Producto> consultaJPQL(
             double precioInf,
             double precioSup);   
-            
-    
-    
+           
     //Consulta SQL
     @Query(nativeQuery=true,
             value="SELECT * "
@@ -37,4 +34,11 @@ public interface ProductoRepository
             double precioInf,
             double precioSup);
     
+   //Consulta JPQL por nombre
+    @Query("SELECT p "
+            + "FROM Producto p "
+            + "WHERE p.descripcion "
+            + "LIKE :nombre "
+            + "ORDER BY p.descripcion")
+    public List<Producto> consultaJPQLPorNombre(String nombre);
 }

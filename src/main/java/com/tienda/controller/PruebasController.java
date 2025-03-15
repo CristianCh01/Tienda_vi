@@ -80,4 +80,12 @@ public class PruebasController {
         model.addAttribute("precioSup", precioSup);
         return "/pruebas/listado2";
     }
+    
+    @PostMapping("/query4")
+    public String query4(@RequestParam("nombre") String nombre, Model model) {
+        var lista = productoService.consultaJPQLPorNombre(nombre);
+        model.addAttribute("productos", lista);
+        model.addAttribute("nombre", nombre);
+        return "/pruebas/listado2";
+    }
 }
