@@ -24,12 +24,12 @@
                 </ul>
             </div>
         </section>
-        
+
         <!-- 2 Sección para mostrar los productos en tarjetas-->
         <section th:fragment="tarjetas">
             <div class="row row-cols-4 p-2">
                 <div th:each="p : ${productos}"
-                     class="card" style="width: 18rem;">
+                     class="card">
                     <figure>
                         <img th:src="${p.rutaImagen}"
                              height="200"
@@ -37,6 +37,19 @@
                         <figcaption class="d-flex justify-content-between">
                             <span>¢[[${p.precio}]]</span>
                             <span>([[${p.existencias}]])</span>
+                            <form>
+                                <input type='hidden'
+                                       name='idProducto'
+                                       th:value='${p.idProducto}'/>
+                                <input type='hidden'
+                                       name='existencias'
+                                       th:value='${p.existencias}'/>
+                                <button type='button'
+                                        onclick='addCart(this.form)'
+                                        class="btn btn-light">
+                                    <i class="fas fa-cart-arrow-down"></i>
+                                </button>
+                            </form>
                         </figcaption>
                     </figure>
                     <div class='card-header'>
@@ -45,32 +58,17 @@
                     <div class="card-body">
                         <p class="card-text">[[${p.detalle}]]</p>
                     </div>
-                    <div class='card-footer'>
-                        <form>
-                            <input type='hidden'
-                                   name='idProducto'
-                                   th:value='${p.idProducto}'/>
-                            <input type='hidden'
-                                   name='existencias'
-                                   th:value='${p.existencias}'/>
-                            <button type='button'
-                                    onclick='addCart(this.form)'
-                                class="btn btn-primary">
-                                <i class="fas fa-cart-arrow-down"></i>
-                            </button>
-                        </form>
-                    </div>
                 </div>
             </div>
         </section>
-        
+
         <!-- 3 Sección para mostrar los filtros de productos-->
         <section th:fragment="filtros">
             <div class='row'>
                 <div class='col-md-1'></div>
                 <div class='col-md-10'>
                     <div class='row p-3'>
-                        
+
                         <!-- Consultas Ampliadas-->
                         <div class='col-md-4'>
                             <form method="post"
@@ -98,7 +96,7 @@
                                                    required="true"/>
                                         </div>
                                     </div>
-                                    
+
                                     <div class='card-footer text-center'>
                                         <button type='submit' class='btn btn-primary'>
                                             <i class='fas fa-magnifying-glass'></i> [[#{pruebas.ampliadas}]]
@@ -107,7 +105,7 @@
                                 </div>
                             </form>
                         </div>
-                        
+
                         <!-- Consultas JPQL-->
                         <div class='col-md-4'>
                             <form method="post"
@@ -135,7 +133,7 @@
                                                    required="true"/>
                                         </div>
                                     </div>
-                                    
+
                                     <div class='card-footer text-center'>
                                         <button type='submit' class='btn btn-info'>
                                             <i class='fas fa-magnifying-glass'></i> [[#{pruebas.jpql}]]
@@ -144,7 +142,7 @@
                                 </div>
                             </form>
                         </div>
-                        
+
                         <!-- Consultas SQL-->
                         <div class='col-md-4'>
                             <form method="post"
@@ -172,7 +170,7 @@
                                                    required="true"/>
                                         </div>
                                     </div>
-                                    
+
                                     <div class='card-footer text-center'>
                                         <button type='submit' class='btn btn-warning'>
                                             <i class='fas fa-magnifying-glass'></i> [[#{pruebas.nativo}]]
@@ -181,7 +179,7 @@
                                 </div>
                             </form>
                         </div>
-                        
+
                         <!-- Consultas JPQL por nombre-->
                         <div class='col-md-4 mb-3 mt-2'>
                             <form method="post"
@@ -202,7 +200,7 @@
                                                    maxlength="100"/>
                                         </div>
                                     </div>
-                                    
+
                                     <div class='card-footer text-center'>
                                         <button type='submit' class='btn btn-info'>
                                             <i class='fas fa-search'></i> [[#{pruebas.jpql}]]
